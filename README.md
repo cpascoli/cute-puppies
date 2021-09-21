@@ -1,4 +1,4 @@
-A Simple NFT contract bnased on the ERC721 standard.
+A Simple NFT contract based on the ERC721 standard.
 
 ### Dependencies
 - Truffle
