@@ -13,7 +13,7 @@ contract CutePuppies is ERC721, Ownable {
         tokenCounter = 0;
     }
 
-    function createCollectible(string memory _tokenURI) public onlyOwner returns (uint256) {
+    function createCollectible(string memory _tokenURI) external onlyOwner returns (uint256) {
         uint256 newItemId = tokenCounter;
         _safeMint(msg.sender, newItemId);
         _setTokenURI(newItemId, _tokenURI);
@@ -22,12 +22,16 @@ contract CutePuppies is ERC721, Ownable {
         return newItemId;
     }
 
+    function updateCollectible(uint _tokenId, string memory _tokenURI) external onlyOwner returns (bool) {
+        _setTokenURI(_tokenId, _tokenURI);
+
+        return true;
+    }
 
     function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
         require(_exists(tokenId), "ERC721Metadata: URI set of nonexistent token");
         _tokenURIs[tokenId] = _tokenURI;
     }
-
 
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
